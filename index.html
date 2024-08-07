@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mais Laser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="assets/logo-mais-laser.png" alt="Logo Mais Laser">
+    </header>
+    
+    <div class="container" id="form1">
+        <h2>Mais Laser Araras</h2>
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" id="valorSemDesconto" placeholder="Valor sem desconto" maxlength="6" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="maxDesconto" placeholder="Máximo % de desconto" maxlength="2" required>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" id="parcelasCartao" placeholder="Máximo parcelas cartão" maxlength="2">
+            </div>
+            <div class="form-group">
+                <input type="text" id="parcelasCarne" placeholder="Máximo parcelas boleto" maxlength="2">
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" id="parcelasRecorrente" placeholder="Máximo parcelas recorrente" maxlength="2">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="valorParcelamentoCheck">
+                <input type="number" id="valorParcelamento" placeholder="Valor parcelamento no boleto" disabled>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group form-inline">
+            
+        </div>
+        <button id="startButton">Começar</button>
+    </div>
+
+    <div class="container hidden" id="form2">
+        <h2>Dados do Cliente</h2>
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" id="nome" placeholder="Nome" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="cpf" placeholder="CPF" maxlength="11" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="whatsapp" placeholder="WhatsApp" maxlength="11" required>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="parcerias"><b>Parcerias</b></label>
+            <br>
+            <br>
+            <div class="parcerias-container">
+                <label><input type="checkbox" value="Cirrus"> Cirrus</label>
+                <label><input type="checkbox" value="Parceiros"> Parceiros</label>
+                <label><input type="checkbox" value="B24h"> B24h</label>
+                <label><input type="checkbox" value="Plus"> Plus</label>
+                <label><input type="checkbox" value="Blogueiro(a)"> Blogueiro(a)</label>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="pagamento">Preferência de pagamento</label>
+            <br>
+            <br>
+            <select id="pagamento">
+                <option value="avista">A vista</option>
+                <option value="parcelado">Parcelado</option>
+            </select>
+        </div>
+        <button id="consultarButton">Consultar Benefício</button>
+    </div>
+
+    <div class="container hidden" id="loading">
+        <h2>Carregando...</h2>
+        <br>
+        <br>
+        <img src="assets/loading.gif" alt="teste">
+    </div>
+
+    <div class="container hidden" id="oportunidade">
+        <h2>Oportunidade Única</h2>
+        <p>Nome: <span id="resNome"></span></p>
+        <p>CPF: <span id="resCPF"></span></p>
+        <br>
+        <p class="preco-original">R$ <span id="resOriginal"></span></p>
+        <p class="preco-desconto">R$ <span id="resDesconto"></span></p>
+        <br>
+        <p class="desconto">Desconto Incrível de <span id="resPercentual"></span>%!</p>
+        <br>
+        <div id="dynamicContent"></div>
+        <br>
+        <p class="tempo-restante"><span id="resTempo"></span></p>
+        <br>
+        <p class="codigo-oferta">Código da Oferta: <span id="resCodigoOferta"></span></p>
+        <button id="aproveitarButton">Aproveitar Oportunidade</button>
+        <button id="perderButton">Perder Oportunidade</button>
+    </div>
+
+    <div class="container hidden" id="aproveitar">
+        <h2>Parabéns!</h2>
+        <p>Você tomou a atitude correta e através da parceria conseguiu um desconto incrível de <span id="finalDesconto"></span>%, que é válido somente para hoje.</p>
+        <p>Seu código de oferta é: <span id="finalCodigo"></span></p>
+    </div>
+
+    <div class="container hidden" id="perder">
+        <h2>Sua oportunidade foi perdida!</h2>
+        <p>Você optou por não aproveitar a oportunidade. Tente novamente mais tarde.</p>
+    </div>
+
+    <div class="container hidden" id="tempoEsgotado">
+        <h2>Sua Oportunidade foi Perdida!</h2>
+        <p>O tempo para aproveitar a oportunidade acabou! Mas reflita, afinal a saúde deveria ser sua prioridade máxima. Ao tentar novamente o mesmo desconto não acontece.</p>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

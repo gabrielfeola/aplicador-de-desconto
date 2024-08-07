@@ -1,0 +1,214 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    background-color: #6098a1;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header img {
+    height: 50px;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 50vw;
+    text-align: center;
+    margin-top: 20px;
+    z-index: 1;
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.container .form-group {
+    flex: 1 1 calc(25% - 10px);
+    margin: 5px;
+}
+
+.container .form-group-checkbox {
+    flex: 1 1 calc(25% - 10px);
+    margin: 5px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.container .form-inline {
+    width: 30vw;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+input:disabled {
+    background-color: #e0e0e0;
+}
+
+input {
+    border: 2px solid lightsteelblue;
+    border-radius: 3px;
+}
+
+.form-group label {
+    margin-right: 10px;
+    width: auto;
+    text-align: right;
+}
+
+.form-group input, .form-group select {
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.parcerias-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.parcerias-container label {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.parcerias-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #00a1b5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button.green {
+    background-color: green;
+}
+
+button.red {
+    background-color: red;
+}
+
+#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Estilos específicos para a seção "Oportunidade Única" */
+#oportunidade h2 {
+    font-size: 24px;
+    color: #000;
+}
+
+#oportunidade p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+#oportunidade .preco-original {
+    font-size: 20px;
+    color: #ff0000;
+    text-decoration: line-through;
+}
+
+#oportunidade .preco-desconto {
+    font-size: 30px;
+    color: #008000;
+    font-weight: bold;
+}
+
+#oportunidade .desconto {
+    font-size: 30px;
+    color: #0000ff;
+    font-weight: bold;
+}
+
+#oportunidade .parcerias {
+    font-size: 18px;
+    color: #000;
+}
+
+#oportunidade .tempo-restante {
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    color: #ff0000;
+}
+
+#oportunidade .codigo-oferta {
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    color: #ff0000;
+}
+
+#oportunidade #aproveitarButton {
+    background-color: #008000;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#oportunidade #perderButton {
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#aproveitar h2 {
+    font-size: 24px;
+    color: #008000;
+}
+
+#perder h2 {
+    font-size: 24px;
+    color: #ff0000;
+}
+
+#tempoEsgotado h2 {
+    font-size: 24px;
+    color: #ff0000;
+}
+
+#tempoEsgotado p {
+    font-size: 18px;
+    color: #000;
+}
