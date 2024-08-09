@@ -250,6 +250,22 @@ function validateForm1() {
 }
 
 function validateForm2() {
-    const fields = ['nome', 'cpf', 'whatsapp'];
-    return fields.every(id => document.getElementById(id).value.trim() !== '');
+    const nome = document.getElementById('nome').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    
+    const cpfValido = cpf.length === 14;
+    const whatsappValido = whatsapp.length === 15;
+
+    if (!cpfValido) {
+        alert('O CPF deve ter 14 caracteres (incluindo pontos e hífen).');
+        return false;
+    }
+
+    if (!whatsappValido) {
+        alert('O WhatsApp deve ter 15 caracteres (incluindo parênteses, espaço e hífen).');
+        return false;
+    }
+
+    return true;
 }
