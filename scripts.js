@@ -24,7 +24,55 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    const mascaraParcelas = document.getElementById('parcelasCartao');
+    const mascaraCarne = document.getElementById('parcelasCarne');
+    const mascaraRecorrente = document.getElementById('parcelasRecorrente');
+    
+    const formatarValor = (event) => {
+        let input = event.target;
+        let valor = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        input.value = valor; // Atualiza o valor do input
+    };
+
+    mascaraParcelas.addEventListener('input', formatarValor);
+    mascaraCarne.addEventListener('input', formatarValor);
+    mascaraRecorrente.addEventListener('input', formatarValor);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
     const maxDescontoInput = document.getElementById('maxDesconto');
+    const maxDescontoCarneInput = document.getElementById('maxDescontoCarne');
+    const maxDescontoRecorrenteInput = document.getElementById('maxDescontoRecorrente');
+
+    maxDescontoCarneInput.addEventListener('input', function(e) {
+        let valor = e.target.value;
+
+        // Remove todos os caracteres que não são dígitos
+        valor = valor.replace(/\D/g, '');
+
+        // Adiciona o símbolo % e formata o valor
+        if (valor) {
+            valor = parseInt(valor, 10);
+            e.target.value = `${valor}%`;
+        } else {
+            e.target.value = '';
+        }
+    });
+
+    maxDescontoRecorrenteInput.addEventListener('input', function(e) {
+        let valor = e.target.value;
+
+        // Remove todos os caracteres que não são dígitos
+        valor = valor.replace(/\D/g, '');
+
+        // Adiciona o símbolo % e formata o valor
+        if (valor) {
+            valor = parseInt(valor, 10);
+            e.target.value = `${valor}%`;
+        } else {
+            e.target.value = '';
+        }
+    });
 
     maxDescontoInput.addEventListener('input', function(e) {
         let valor = e.target.value;
@@ -83,6 +131,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.getElementById('addBeneficio').addEventListener('click', function() {
+    if (!document.querySelector('#beneficioExtra')) {
+        const newDiv = document.createElement('div');
+        newDiv.className = 'form-group';
+
+        const newInput = document.createElement('input');
+        newInput.type = 'text';
+        newInput.id = 'beneficioExtra';
+        newInput.placeholder = 'Benefício extra';
+
+        newDiv.appendChild(newInput);
+
+        document.getElementById('form1').appendChild(newDiv);
+    }
+});
 
 document.getElementById('startButton').addEventListener('click', function() {
     if (validateForm1()) {
@@ -127,7 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const parcelasCartao = parseInt(parcelasCartaoInput.value, 10) || 0;
             const parcelasRecorrente = parseInt(parcelasRecorrenteInput.value, 10) || 0;
             const parcelasCarne = parseInt(parcelasCarneInput.value, 10) || 0;
-            const numParcelas = parcelasCartao + parcelasRecorrente + parcelasCarne;
+
+            // Encontra o maior número de parcelas
+            const numParcelas = Math.max(parcelasCartao, parcelasRecorrente, parcelasCarne);
             
             if (numParcelas > 0) {
                 numeroParcelasContainer.classList.remove('hidden');
@@ -159,8 +224,12 @@ document.getElementById('consultarButton').addEventListener('click', function() 
         
         const valorSemDescontoInput = document.getElementById('valorSemDesconto').value;
         const maxDescontoInput = document.getElementById('maxDesconto').value;
+        const maxDescontoCarneInput = document.getElementById('maxDescontoCarne').value;
+        const maxDescontoRecorrenteInput = document.getElementById('maxDescontoRecorrente').value;
         const valorSemDesconto = parseFloat(valorSemDescontoInput.replace(/[^\d,]/g, '').replace(',', '.'));
         const maxDesconto = parseFloat(maxDescontoInput.replace(/[^\d]/g, ''));
+        const maxDescontoCarne = parseFloat(maxDescontoCarneInput.replace(/[^\d]/g, ''));
+        const maxDescontoRecorrente = parseFloat(maxDescontoRecorrenteInput.replace(/[^\d]/g, ''));
 
         if (isNaN(valorSemDesconto) || isNaN(maxDesconto)) {
             alert('Valor inválido em um dos campos.');
@@ -168,6 +237,8 @@ document.getElementById('consultarButton').addEventListener('click', function() 
         }
 
         const desconto = (valorSemDesconto * (1 - maxDesconto / 100)).toFixed(2);
+        const descontoCarne = (valorSemDesconto * (1 - maxDescontoCarne / 100)).toFixed(2);
+        const descontoRecorrente = (valorSemDesconto * (1 - maxDescontoRecorrente / 100)).toFixed(2);
 
         const numeroParcelasSelect = document.getElementById('numeroParcelas');
         const parcelaSelecionada = numeroParcelasSelect ? numeroParcelasSelect.value : '';
@@ -185,6 +256,15 @@ document.getElementById('consultarButton').addEventListener('click', function() 
         document.getElementById('resOriginal').innerText = `${valorSemDesconto}`;
         document.getElementById('resDesconto').innerText = desconto;
         document.getElementById('resPercentual').innerText = maxDesconto;
+
+        document.getElementById('resOriginalCarne').innerText = `${valorSemDesconto}`;
+        document.getElementById('resDescontoCarne').innerText = descontoCarne;
+        document.getElementById('resPercentualCarne').innerText = maxDescontoCarne;
+
+        document.getElementById('resOriginalRecorrente').innerText = `${valorSemDesconto}`;
+        document.getElementById('resDescontoRecorrente').innerText = descontoRecorrente;
+        document.getElementById('resPercentualRecorrente').innerText = maxDescontoRecorrente;
+
         const parcerias = Array.from(document.querySelectorAll('#form2 input[type="checkbox"]:checked'))
             .map(checkbox => checkbox.value)
             .join(', ');
@@ -193,6 +273,20 @@ document.getElementById('consultarButton').addEventListener('click', function() 
             parceriasElement.className = 'parcerias';
             parceriasElement.innerHTML = `<b>Parceria</b>: <span id="resParcerias">${parcerias}</span>`;
             document.getElementById('dynamicContent').appendChild(parceriasElement);
+        }
+
+        const beneficioExtraInput = document.querySelector('#beneficioExtra');
+        if (beneficioExtraInput) {
+            const beneficioExtra = beneficioExtraInput.value;
+            if (beneficioExtra.trim() !== '') {
+                const beneficioElement = document.createElement('p');
+                beneficioElement.className = 'beneficio';
+                beneficioElement.innerHTML = `<b>Benefício extra:</b> <span id="beneficios">${beneficioExtra}</span>`;
+                const dynamicContent = document.getElementById('dynamicContent2');
+                if (dynamicContent) {
+                    dynamicContent.appendChild(beneficioElement);
+                } 
+            } 
         }
 
         let tempo = 600;
@@ -245,7 +339,7 @@ document.getElementById('perderButton').addEventListener('click', function() {
 });
 
 function validateForm1() {
-    const fields = ['valorSemDesconto', 'maxDesconto'];
+    const fields = ['valorSemDesconto', 'maxDesconto', 'maxDescontoCarne', 'maxDescontoRecorrente'];
     return fields.every(id => document.getElementById(id).value.trim() !== '');
 }
 
