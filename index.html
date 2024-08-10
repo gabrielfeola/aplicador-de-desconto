@@ -13,32 +13,39 @@
 
     <div class="container" id="form1">
         <h2>Maislaser Araras</h2>
-        <div class="form-container">
-            <div class="form-group">
-                <input type="text" id="valorSemDesconto" placeholder="Valor sem desconto" required>
-            </div>
-            <div class="form-group">
-                <input type="text" id="maxDesconto" placeholder="Máximo % de desconto" maxlength="3" required>
-            </div>
-        </div>
+        <div class="form-group">
+            <input type="text" id="valorSemDesconto" placeholder="Valor sem desconto" required>
+        </div> 
         <br>
-        <div class="form-container">
-            <div class="form-group">
-                <input type="text" id="parcelasCartao" placeholder="Máximo parcelas cartão" maxlength="2">
+        <div class="form-container-1">
+            <div class="form-container-column">
+                <div class="form-group">
+                    <input type="text" id="maxDesconto" placeholder="Máximo % de desconto cartão" maxlength="3" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="parcelasCartao" placeholder="Máximo parcelas cartão" maxlength="2">
+                </div>
             </div>
-            <div class="form-group">
-                <input type="text" id="parcelasRecorrente" placeholder="Máximo parcelas recorrente" maxlength="2">
+            <div class="form-container-column">
+                <div class="form-group">
+                    <input type="text" id="maxDescontoCarne" placeholder="Máximo % de desconto carnê" maxlength="3" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="parcelasCarne" placeholder="Máximo parcelas carnê" maxlength="2">
+                </div>
+            </div> 
+            <div class="form-container-column">
+                <div class="form-group">
+                    <input type="text" id="maxDescontoRecorrente" placeholder="Máximo % de desconto recorrente" maxlength="3" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="parcelasRecorrente" placeholder="Máximo parcelas recorrente" maxlength="2">
+                </div>
             </div>
-            <div class="form-group">
-                <input type="text" id="parcelasCarne" placeholder="Máximo parcelas carnê" maxlength="2">
-            </div>
+            </div>       
+            <button id="addBeneficio">Adicionar benefício extra</button>
+            <button id="startButton">Começar</button>
         </div>
-        <br>
-        <br>
-        <div class="form-group form-inline">
-            
-        </div>
-        <button id="startButton">Começar</button>
     </div>
 
     <div class="container hidden" id="form2">
@@ -97,14 +104,43 @@
         <p>Nome: <span id="resNome"></span></p>
         <p>CPF: <span id="resCPF"></span></p>
         <br>
-        <p class="preco-original">R$ <span id="resOriginal"></span></p>
-        <p class="preco-desconto">R$ <span id="resDesconto"></span></p>
-        <br>
-        <p class="desconto">Desconto Incrível de <span id="resPercentual"></span>%!</p>
-        <p class="resultadoParcelas"></p>
-        <br>
-        <div id="dynamicContent"></div>
-        <br>
+        <div class="form-container-1">
+            <div class="form-container-column">
+                <p class="formaPagamento">No Cartão</p>
+                <br>
+                <p class="preco-original">R$ <span id="resOriginal"></span></p>
+                <p class="preco-desconto">R$ <span id="resDesconto"></span></p>
+                <br>
+                <p class="desconto">Desconto de <span id="resPercentual"></span>%!</p>
+            </div>
+            <div class="form-container-column">
+                <p class="formaPagamento">No Carnê</p>
+                <br>
+                <p class="preco-original">R$ <span id="resOriginalCarne"></span></p>
+                <p class="preco-desconto">R$ <span id="resDescontoCarne"></span></p>
+                <br>
+                <p class="desconto">Desconto de <span id="resPercentualCarne"></span>%!</p>
+            </div>
+            <div class="form-container-column">
+                <p class="formaPagamento">No Recorrente</p>
+                <br>
+                <p class="preco-original">R$ <span id="resOriginalRecorrente"></span></p>
+                <p class="preco-desconto">R$ <span id="resDescontoRecorrente"></span></p>
+                <br>
+                <p class="desconto">Desconto de <span id="resPercentualRecorrente"></span>%!</p>
+            </div>
+        </div>
+        <div class="resultadosDinamicos">
+            <div class="resultadosDinamicosItens">
+                <p class="resultadoParcelas"></p>
+            </div>
+            <div class="resultadosDinamicosItens">
+                <div id="dynamicContent"></div>
+            </div>
+            <div class="resultadosDinamicosItens">
+                <div id="dynamicContent2"></div>
+            </div>
+        </div>
         <p class="tempo-restante"><span id="resTempo"></span></p>
         <br>
         <p class="codigo-oferta">Código da Oferta: <span id="resCodigoOferta"></span></p>
